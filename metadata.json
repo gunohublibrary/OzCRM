@@ -1,0 +1,6 @@
+{
+  "name": "Güntek Bilişim OzCRM",
+  "description": "Güntek Bilişim için C# web mimarisi standartlarında kurumsal müşteri ilişkileri, satış fırsatları, teklif ve destek yönetim sistemi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

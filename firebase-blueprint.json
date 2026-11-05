@@ -1,0 +1,138 @@
+{
+  "entities": {
+    "Customer": {
+      "title": "Customer",
+      "description": "Kurumsal müşteri ve cari hesap kartı",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "companyName": { "type": "string" },
+        "tradeName": { "type": "string" },
+        "contactPerson": { "type": "string" },
+        "contactTitle": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "phone": { "type": "string" },
+        "taxNumber": { "type": "string" },
+        "taxOffice": { "type": "string" },
+        "city": { "type": "string" },
+        "district": { "type": "string" },
+        "address": { "type": "string" },
+        "industry": { "type": "string" },
+        "status": { "type": "string" },
+        "category": { "type": "string" },
+        "accountManager": { "type": "string" },
+        "creditLimit": { "type": "number" },
+        "balance": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["companyName", "contactPerson", "email", "phone"]
+    },
+    "Deal": {
+      "title": "Deal",
+      "description": "Satış fırsatı ve pipeline kartı",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "title": { "type": "string" },
+        "value": { "type": "number" },
+        "currency": { "type": "string" },
+        "stage": { "type": "string" },
+        "probability": { "type": "number" },
+        "expectedCloseDate": { "type": "string" },
+        "assignedTo": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["customerId", "customerName", "title", "value", "stage"]
+    },
+    "Quote": {
+      "title": "Quote",
+      "description": "Fiyat teklifi ve sözleşme",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "quoteNumber": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "contactPerson": { "type": "string" },
+        "title": { "type": "string" },
+        "currency": { "type": "string" },
+        "subtotal": { "type": "number" },
+        "vatTotal": { "type": "number" },
+        "discountTotal": { "type": "number" },
+        "grandTotal": { "type": "number" },
+        "issueDate": { "type": "string" },
+        "validUntil": { "type": "string" },
+        "status": { "type": "string" },
+        "preparedBy": { "type": "string" },
+        "notes": { "type": "string" },
+        "terms": { "type": "string" }
+      },
+      "required": ["quoteNumber", "customerId", "customerName", "title", "grandTotal"]
+    },
+    "SupportTicket": {
+      "title": "SupportTicket",
+      "description": "Teknik destek SLA bileti",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "ticketNumber": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "contactPerson": { "type": "string" },
+        "subject": { "type": "string" },
+        "category": { "type": "string" },
+        "priority": { "type": "string" },
+        "status": { "type": "string" },
+        "assignedEngineer": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "dueDate": { "type": "string" },
+        "description": { "type": "string" },
+        "resolutionNotes": { "type": "string" }
+      },
+      "required": ["ticketNumber", "customerId", "customerName", "subject", "priority", "status"]
+    },
+    "Activity": {
+      "title": "Activity",
+      "description": "Müşteri görüşme veya etkinlik kaydı",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "date": { "type": "string" },
+        "performedBy": { "type": "string" }
+      },
+      "required": ["customerId", "type", "title"]
+    }
+  },
+  "firestore": {
+    "/customers/{customerId}": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "Kurumsal müşteri koleksiyonu"
+    },
+    "/deals/{dealId}": {
+      "schema": { "$ref": "#/entities/Deal" },
+      "description": "Satış fırsatları pipeline koleksiyonu"
+    },
+    "/quotes/{quoteId}": {
+      "schema": { "$ref": "#/entities/Quote" },
+      "description": "Teklif ve sözleşmeler koleksiyonu"
+    },
+    "/tickets/{ticketId}": {
+      "schema": { "$ref": "#/entities/SupportTicket" },
+      "description": "SLA destek masası biletleri"
+    },
+    "/activities/{activityId}": {
+      "schema": { "$ref": "#/entities/Activity" },
+      "description": "Görüşme ve etkinlikler koleksiyonu"
+    }
+  }
+}
